@@ -3,6 +3,17 @@ import { RuleSetRule } from 'webpack';
 import { BuildOptions } from './types/config';
 
 export function buildLoaders({ isDev }: BuildOptions): RuleSetRule[] {
+  // svgr - to use svg as React component
+  const svgLoader = {
+    test: /\.svg$/,
+    use: ['@svgr/webpack'],
+  };
+
+  const imgLoader = {
+    test: /\.(png|jpg|jpeg|gif|webp)$/i,
+    type: 'asset/resource',
+  };
+
   const typescriptLoader = {
     test: /\.tsx?$/,
     use: 'ts-loader',
@@ -32,5 +43,5 @@ export function buildLoaders({ isDev }: BuildOptions): RuleSetRule[] {
   };
 
   // A chain is executed in reverse order: typescriptLoader -> sassLoader -> ...
-  return [sassLoader, typescriptLoader];
+  return [imgLoader, svgLoader, sassLoader, typescriptLoader];
 }
