@@ -9,3 +9,12 @@
     color: var(--primary-color);
     min-height: 100vh;
 }
+
+.content-page {
+    display: grid;
+    grid-template-columns: auto 1fr;
+}
+
+.page-wrapper {
+    padding: 20px;
+}
