@@ -14,6 +14,17 @@ export function buildLoaders({ isDev }: BuildOptions): RuleSetRule[] {
     type: 'asset/resource',
   };
 
+  const babelLoader = {
+    test: /\.(js|jsx|tsx)$/,
+    exclude: /node_modules/,
+    use: {
+      loader: 'babel-loader',
+      options: {
+        presets: ['@babel/preset-env'],
+      },
+    },
+  };
+
   const typescriptLoader = {
     test: /\.tsx?$/,
     use: 'ts-loader',
@@ -43,5 +54,5 @@ export function buildLoaders({ isDev }: BuildOptions): RuleSetRule[] {
   };
 
   // A chain is executed in reverse order: typescriptLoader -> sassLoader -> ...
-  return [imgLoader, svgLoader, sassLoader, typescriptLoader];
+  return [imgLoader, svgLoader, sassLoader, babelLoader, typescriptLoader];
 }
