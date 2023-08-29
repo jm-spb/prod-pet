@@ -1,7 +1,6 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { Button, VariantButton } from 'shared/ui/Button/Button';
-import styles from './LangSwitcher.module.scss';
 
 interface LangSwitcherProps {
   className?: string;
@@ -15,7 +14,7 @@ export const LangSwitcher: React.FC<LangSwitcherProps> = (props) => {
 
   return (
     <Button
-      className={classNames(styles.langSwitcher, {}, [className])}
+      className={classNames('', {}, [className])}
       variant={VariantButton.CLEAR}
       onClick={toggle}
     >
