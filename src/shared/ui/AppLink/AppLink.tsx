@@ -1,6 +1,6 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import styles from './AppLink.module.scss';
 import { Link, LinkProps } from 'react-router-dom';
+import styles from './AppLink.module.scss';
 
 type Color = 'primary' | 'inverted';
 

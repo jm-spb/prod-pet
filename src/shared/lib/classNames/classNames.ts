@@ -1,6 +1,6 @@
 type Mods = Record<string, boolean | string>;
 
-/* 
+/*
 cls - main class
 mods - various modificators (eg. hovered, selected)
 additional - array of additional classes

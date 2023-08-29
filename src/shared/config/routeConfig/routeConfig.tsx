@@ -23,7 +23,7 @@ export const routeConfig: Record<AppRoutes, RouteObject> = {
   },
 };
 
-/* 
+/*
 TODO: refactor:
 export const routerConfig: Array<RouteProps> = [
     {
