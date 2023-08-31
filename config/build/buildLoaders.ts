@@ -34,8 +34,7 @@ export function buildLoaders({ isDev }: BuildOptions): RuleSetRule[] {
   const sassLoader = {
     test: /\.s[ac]ss$/i,
     use: [
-      /* For dev mode use style-loader, because it injects CSS into the DOM
-      using multiple and works faster */
+      // For dev mode use style-loader, because it injects CSS into the DOM using multiple and works faster
       isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
       // Translates CSS into CommonJS
       {

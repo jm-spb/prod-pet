@@ -2,6 +2,7 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
+    jest: true,
   },
   extends: ['plugin:react/recommended', 'airbnb', 'prettier', 'plugin:i18next/recommended'],
   parser: '@typescript-eslint/parser',
@@ -14,7 +15,7 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint', 'i18next'],
   rules: {
-    'i18next/no-literal-string': ['error', { markupOnly: true, ignoreAttribute: ['to', 'color'] }],
+    'i18next/no-literal-string': ['error', { markupOnly: true }],
     'import/no-unresolved': 'off',
     'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.tsx'] }],
     'react/react-in-jsx-scope': 'off',
