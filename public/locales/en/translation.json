@@ -3,5 +3,8 @@
   "example": "Example",
   "main": "Main",
   "about": "About",
-  "lang": "EN"
+  "lang": "EN",
+  "error-message": "Something went wrong",
+  "page-refresh": "Refresh Page",
+  "throw-error": "Throw Error"
 }

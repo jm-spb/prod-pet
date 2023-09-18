@@ -3,5 +3,8 @@
   "example": "Пример",
   "main": "Главная",
   "about": "О нас",
-  "lang": "RU"
+  "lang": "RU",
+  "error-message": "Что-то пошло не так",
+  "page-refresh": "Обновить страницу",
+  "throw-error": "Выкинуть Ошибку"
 }
