@@ -6,5 +6,6 @@
   "lang": "EN",
   "error-message": "Something went wrong",
   "page-refresh": "Refresh Page",
-  "throw-error": "Throw Error"
+  "throw-error": "Throw Error",
+  "not-found": "PAGE NOT FOUND"
 }
