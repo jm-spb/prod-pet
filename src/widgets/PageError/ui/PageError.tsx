@@ -9,10 +9,9 @@ interface PageErrorProps {
 
 export const PageError: React.FC<PageErrorProps> = (props) => {
   const { className } = props;
-  const { t } = useTranslation('');
+  const { t } = useTranslation('translation');
 
-  // eslint-disable-next-line no-restricted-globals
-  const reloadPage = () => location.reload();
+  const reloadPage = () => window.location.reload();
 
   return (
     <div className={classNames(styles.pageError, {}, [className])}>
