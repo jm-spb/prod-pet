@@ -14,7 +14,10 @@ export const Sidebar: React.FC<SidebarProps> = (props) => {
   const toggleCollapsed = () => setCollapsed((prev) => !prev);
 
   return (
-    <div className={classNames(styles.sidebar, { [styles.collapsed]: collapsed }, [className])}>
+    <div
+      data-testid="sidebar"
+      className={classNames(styles.sidebar, { [styles.collapsed]: collapsed }, [className])}
+    >
       <button
         type="button"
         onClick={toggleCollapsed}
