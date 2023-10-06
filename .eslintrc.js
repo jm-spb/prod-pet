@@ -28,12 +28,19 @@ module.exports = {
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
     'no-underscore-dangle': 'off',
-    'no-undef': 'warn',
     'react/prop-types': 'off',
   },
   globals: {
     __IS_DEV__: true,
   },
+  overrides: [
+    {
+      files: ['*.ts', '*.tsx'],
+      rules: {
+        'no-undef': 'off',
+      },
+    },
+  ],
   settings: {
     react: {
       version: 'detect',
