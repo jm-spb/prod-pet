@@ -14,6 +14,7 @@ export const LangSwitcher: React.FC<LangSwitcherProps> = (props) => {
 
   return (
     <Button
+      data-testid="lang-switcher"
       className={classNames('', {}, [className])}
       variant={VariantButton.CLEAR}
       onClick={toggle}

@@ -15,6 +15,7 @@ export const ThemeSwitcher: React.FC<ThemeSwitcherProps> = (props) => {
 
   return (
     <Button
+      data-testid="theme-switcher"
       variant={VariantButton.CLEAR}
       className={classNames('', {}, [className])}
       onClick={toggleTheme}
