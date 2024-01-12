@@ -4,6 +4,7 @@ import styles from './Button.module.scss';
 
 export enum VariantButton {
   CLEAR = 'clear',
+  OUTLINE = 'outline',
 }
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -15,11 +16,7 @@ export const Button: React.FC<ButtonProps> = (props) => {
   const { className, variant, children, ...otherProps } = props;
 
   return (
-    <button
-      type="button"
-      className={classNames(styles.button, {}, [className, styles[variant]])}
-      {...otherProps}
-    >
+    <button type="button" className={classNames(styles.button, {}, [className, styles[variant]])} {...otherProps}>
       {children}
     </button>
   );
