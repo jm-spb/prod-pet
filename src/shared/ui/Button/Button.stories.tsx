@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
+import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider';
-import { Button } from './Button';
+import { Button, VariantButton } from './Button';
 
 export default {
   title: 'shared/Button',
@@ -15,28 +15,24 @@ const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-  label: 'Button',
   children: 'Button',
 };
 
 export const Clear = Template.bind({});
 Clear.args = {
-  label: 'Button',
-  variant: 'clear',
+  variant: VariantButton.CLEAR,
   children: 'Button',
 };
 
 export const Outline = Template.bind({});
 Outline.args = {
-  label: 'Button',
-  variant: 'outline',
+  variant: VariantButton.OUTLINE,
   children: 'Button',
 };
 
 export const OutlineDark = Template.bind({});
 OutlineDark.args = {
-  label: 'Button',
-  variant: 'outline',
+  variant: VariantButton.OUTLINE,
   children: 'Button',
 };
 
