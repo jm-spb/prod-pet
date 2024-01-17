@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { AppLink } from 'shared/ui/AppLink/AppLink';
+import { AppLink, AppLinkColor } from 'shared/ui/AppLink/AppLink';
 import styles from './Navbar.module.scss';
 
 interface NavbarProps {
@@ -13,16 +13,10 @@ export const Navbar: React.FC<NavbarProps> = ({ className }) => {
   return (
     <div className={classNames(styles.navbar, {}, [className])}>
       <div className={styles.links}>
-        <AppLink
-          to="/"
-          color="inverted"
-        >
+        <AppLink to="/" color={AppLinkColor.INVERTED}>
           {t('main')}
         </AppLink>
-        <AppLink
-          to="/about"
-          color="inverted"
-        >
+        <AppLink to="/about" color={AppLinkColor.INVERTED}>
           {t('about')}
         </AppLink>
       </div>
