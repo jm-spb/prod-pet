@@ -19,7 +19,10 @@ module.exports = {
     'import/no-unresolved': 'off',
     'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.tsx'] }],
     'react/react-in-jsx-scope': 'off',
-    'react/function-component-definition': [2, { namedComponents: 'arrow-function' }],
+    'react/function-component-definition': [
+      2,
+      { namedComponents: 'arrow-function', unnamedComponents: 'arrow-function' },
+    ],
     'react/jsx-props-no-spreading': 'warn',
     'import/extensions': 'off',
     'import/no-extraneous-dependencies': 'off',

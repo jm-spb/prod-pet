@@ -12,7 +12,8 @@
       "*": ["./src/*"]
     },
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "strictBindCallApply": true
   },
   // ts-node does not support any module syntax other than commonjs
   "ts-node": {
