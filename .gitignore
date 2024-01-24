@@ -2,5 +2,4 @@
 /build
 /storybook-static
 .vscode
-.loki
 package-lock.json
