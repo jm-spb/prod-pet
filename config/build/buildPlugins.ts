@@ -17,6 +17,7 @@ export function buildPlugins({ paths, isDev, analyze }: BuildOptions): webpack.W
     new webpack.DefinePlugin({
       __IS_DEV__: JSON.stringify(isDev),
     }),
+    // not working in build:prod, only if --env analyze=true is set
     new BundleAnalyzerPlugin({
       analyzerMode: analyze ? 'server' : 'disabled',
     }),
