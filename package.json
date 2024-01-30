@@ -17,7 +17,8 @@
     "test:ui:ci": "loki --requireReference --reactUri file:./storybook-static",
     "analyze:prod": "npm run build:prod --env analyze=true",
     "storybook": "start-storybook -p 6006 -c ./config/storybook",
-    "storybook:build": "build-storybook -c ./config/storybook"
+    "storybook:build": "build-storybook -c ./config/storybook",
+    "test:ui:report": "reg-cli ./.loki/current ./.loki/reference ./.loki/difference -R ./.loki/report.html && mv ./reg.json ./.loki/reg.json"
   },
   "keywords": [],
   "author": "",
@@ -65,6 +66,7 @@
     "loki": "^0.33.1",
     "mini-css-extract-plugin": "^2.5.3",
     "react-refresh": "^0.12.0",
+    "reg-cli": "^0.17.7",
     "regenerator-runtime": "^0.13.9",
     "sass": "^1.49.9",
     "sass-loader": "^12.6.0",
