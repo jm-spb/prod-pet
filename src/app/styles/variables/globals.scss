@@ -6,10 +6,13 @@
   --font-size-l: 2.4rem;
   --font-line-l: 3.2rem;
   --font-l: var(--font-size-l) / var(--font-line-l) var(--font-family-main);
+  --font-size-xl: 3.2rem;
+  --font-line-xl: 4rem;
+  --font-xl: var(--font-size-xl) / var(--font-line-xl) var(--font-family-main);
 
   // Sizees
 
-  --navbar-height: 50px;
-  --sidebar-width: 300px;
-  --sidebar-width-collapsed: 80px;
+  --navbar-height: 5rem;
+  --sidebar-width: 30rem;
+  --sidebar-width-collapsed: 10rem;
 }
