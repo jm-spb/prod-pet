@@ -1,5 +1,4 @@
-import './styles/index.scss';
-import { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTheme } from 'app/providers/ThemeProvider';
 import { Navbar } from 'widgets/Navbar';
@@ -9,8 +8,12 @@ import { AppRouter } from './providers/router';
 const App = () => {
   const { theme } = useTheme();
 
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+  }, [theme]);
+
   return (
-    <div className={classNames('app', {}, [theme])}>
+    <div className={classNames('app', {})}>
       <Suspense fallback="">
         <Navbar />
         <div className="content-page">
