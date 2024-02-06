@@ -1,4 +1,5 @@
 :root {
+  // Fonts
   --font-family-main: arial, 'Times New Roman', serif;
   --font-size-m: 1.6rem;
   --font-line-m: 2.4rem;
@@ -11,8 +12,13 @@
   --font-xl: var(--font-size-xl) / var(--font-line-xl) var(--font-family-main);
 
   // Sizees
-
   --navbar-height: 5rem;
   --sidebar-width: 30rem;
   --sidebar-width-collapsed: 10rem;
+
+  // Indexes
+  --modal-z-index: 1000;
+
+  // Colors
+  --overlay-color: rgba(0 0 0 / 60%);
 }
