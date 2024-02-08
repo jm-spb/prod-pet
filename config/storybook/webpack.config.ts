@@ -11,9 +11,23 @@ export default ({ config }: { config: webpack.Configuration }) => {
     html: '',
     src: path.resolve(__dirname, '..', '..', 'src'),
   };
-  config.resolve?.modules?.push(paths.src);
-  config.resolve?.extensions?.push('.ts', '.tsx');
+  /*
+    fix storybook error when resolve entities from src
+    Суть проблемы:
+    В сторибуке мы правим путь до src папки, чтобы сторибук правильно смог все зарезолвить.
+    Но добавляем мы этот новый "пофикшеный" путь в конец массива, и получается:
+    modules: [options.paths.src, 'node_modules', 'путь до src относительно сторибука'],
+    Т.е. сначала мы ищем папку entities по неправильным путям (первый элемент массива), 
+    потом идём в node_modules и там ищем эту папку. 
+    Когда мы её находим, получаем ошибку: нет такого файла (например Counter.ts) 
+    и до правильного пути не доходим.
+    Решение:
+    Добавить элемент в начало массива
+    storybook/webpack.config.ts --> config.resolve.modules.unshift(paths.src);
+  */
+  config.resolve?.modules?.unshift(paths.src);
 
+  config.resolve?.extensions?.push('.ts', '.tsx');
   // set css loader
   config.module?.rules?.push(buildCssLoader(true));
 
