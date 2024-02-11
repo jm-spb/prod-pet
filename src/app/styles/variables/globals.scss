@@ -1,5 +1,5 @@
 :root {
-  // Fonts
+  // FONTS
   --font-family-main: arial, 'Times New Roman', serif;
   --font-size-m: 1.6rem;
   --font-line-m: 2.4rem;
@@ -11,14 +11,21 @@
   --font-line-xl: 4rem;
   --font-xl: var(--font-size-xl) / var(--font-line-xl) var(--font-family-main);
 
-  // Sizees
+  // SIZES
   --navbar-height: 5rem;
   --sidebar-width: 30rem;
   --sidebar-width-collapsed: 10rem;
 
-  // Indexes
+  // INDEXES
   --modal-z-index: 1000;
 
-  // Colors
+  // COLORS
   --overlay-color: rgba(0 0 0 / 60%);
+  --bg-color: #121212;
+  --inverted-bg-color: #282828;
+  --primary-color: var(--color-primary-200);
+  --primary-color-hover: var(--color-primary-100);
+  --secondary-color: #382bf0;
+  --inverted-primary-color: #f3f3f3;
+  --inverted-secondary-color: #0449e0;
 }

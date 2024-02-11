@@ -1,8 +1,25 @@
 :root[data-theme='dark'] {
-  --bg-color: #121212;
-  --inverted-bg-color: #282828;
-  --primary-color: #a688fa;
-  --secondary-color: #382bf0;
-  --inverted-primary-color: #f3f3f3;
-  --inverted-secondary-color: #0449e0;
+  // CSS DARK THEME PRIMARY COLORS
+  --color-primary-100: hwb(254deg 45% 3%);
+  --color-primary-200: hwb(256deg 54% 2%);
+  --color-primary-300: hwb(258deg 62% 2%);
+
+  // CSS DARK THEME SECONDARY COLORS
+  --color-secondary-100: hwb(240deg 37% 5%);
+  --color-secondary-200: hwb(249deg 33% 0%);
+  --color-secondary-300: hwb(252deg 36% 4%);
+
+  // CSS DARK THEME SURFACE COLORS
+  --color-surface-100: hwb(0deg 7% 93%);
+  --color-surface-200: hwb(0deg 16% 84%);
+  --color-surface-300: hwb(0deg 25% 75%);
+  --color-surface-400: hwb(0deg 34% 66%);
+  --color-surface-500: hwb(0deg 44% 56%);
+  --color-surface-600: hwb(0deg 55% 45%);
+
+  // TEXT COLORS
+  --text-color-primary: #e1e3e6;
+
+  // Accent color DB884D
+  // Error color A41D39
 }
