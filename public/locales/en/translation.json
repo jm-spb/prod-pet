@@ -9,5 +9,12 @@
   "page-refresh": "Refresh Page",
   "throw-error": "Throw Error",
   "not-found": "PAGE NOT FOUND",
-  "login": "Log in"
+  "login": "Log In",
+  "auth": "Login",
+  "username": "Username",
+  "username_enter": "Enter username",
+  "password": "Password",
+  "password_enter": "Enter password",
+  "username_error": "Username field is empty",
+  "password_error": "Password field is empty"
 }

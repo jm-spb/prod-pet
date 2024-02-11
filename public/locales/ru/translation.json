@@ -9,5 +9,12 @@
   "page-refresh": "Обновить страницу",
   "throw-error": "Выкинуть Ошибку",
   "not-found": "СТРАНИЦА НЕ НАЙДЕНА",
-  "login": "Войти"
+  "login": "Войти",
+  "auth": "Авторизация",
+  "username": "Пользователь",
+  "username_enter": "Ваше имя",
+  "password": "Пароль",
+  "password_enter": "Ваш пароль",
+  "username_error": "Введите ваше имя",
+  "password_error": "Введите ваш пароль"
 }
