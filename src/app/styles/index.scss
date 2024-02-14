@@ -5,11 +5,11 @@
 
 body {
   font: var(--font-m);
-  color: var(--primary-color);
+  color: var(--color-text-primary);
 }
 
 .app {
-  background: var(--bg-color);
+  background: var(--color-background-main);
   min-height: 100vh;
 }
 

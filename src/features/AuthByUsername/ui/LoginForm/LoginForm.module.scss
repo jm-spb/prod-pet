@@ -2,7 +2,7 @@
   min-height: 10rem;
   text-align: left;
   display: block;
-  color: var(--primary-color);
+  color: var(--color-text-primary);
 }
 
 .group {
@@ -26,7 +26,7 @@
   right: 8px;
   transform: translateY(-50%);
   height: 2.4rem;
-  color: var(--primary-color);
+  color: var(--color-background-main);
   cursor: pointer;
 }
 
@@ -49,7 +49,7 @@
 
   &:hover {
     cursor: pointer;
-    background-color: var(--primary-color-hover);
+    background-color: var(--color-primary-dark);
   }
 
   &:active {

@@ -1,7 +1,7 @@
 .sidebar {
   height: calc(100vh - var(--navbar-height));
   width: var(--sidebar-width);
-  background: var(--inverted-bg-color);
+  background: var(--color-background-content);
   position: relative;
   transition: width 0.3s ease-out;
 }
@@ -28,7 +28,7 @@
 }
 
 .linkIcon {
-  fill: var(--inverted-primary-color);
+  fill: var(--color-text-primary);
 }
 
 .switchers {

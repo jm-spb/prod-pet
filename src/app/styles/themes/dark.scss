@@ -1,25 +1,25 @@
 :root[data-theme='dark'] {
-  // CSS DARK THEME PRIMARY COLORS
-  --color-primary-100: hwb(254deg 45% 3%);
-  --color-primary-200: hwb(256deg 54% 2%);
-  --color-primary-300: hwb(258deg 62% 2%);
+  // PRIMARY COLORS
+  --color-primary: hwb(256deg 54% 2%); // #a88afa
+  --color-primary-dark: hwb(254deg 45% 3%); // #9273f7
+  --color-primary-light: hwb(258deg 62% 2%); // #ba9efa
 
-  // CSS DARK THEME SECONDARY COLORS
-  --color-secondary-100: hwb(240deg 37% 5%);
-  --color-secondary-200: hwb(249deg 33% 0%);
-  --color-secondary-300: hwb(252deg 36% 4%);
+  // SECONDARY COLORS
+  --color-secondary: hwb(25deg 30% 14%); // #DB884D
 
-  // CSS DARK THEME SURFACE COLORS
-  --color-surface-100: hwb(0deg 7% 93%);
-  --color-surface-200: hwb(0deg 16% 84%);
-  --color-surface-300: hwb(0deg 25% 75%);
-  --color-surface-400: hwb(0deg 34% 66%);
-  --color-surface-500: hwb(0deg 44% 56%);
-  --color-surface-600: hwb(0deg 55% 45%);
+  // BACKGROUND COLORS
+  --color-background-main: hwb(0deg 7% 93%); // #121212
+  --color-background-content: hwb(0deg 16% 84%); // #292929
+  --color-surface-300: hwb(0deg 25% 75%); // #404040
+  --color-surface-400: hwb(0deg 34% 66%); // #575757
+  --color-surface-500: hwb(0deg 44% 56%); // #707070
+  --color-surface-600: hwb(0deg 55% 45%); // #8c8c8c
 
   // TEXT COLORS
-  --text-color-primary: #e1e3e6;
+  --color-text-primary: #e1e3e6; // #e1e3e6
 
-  // Accent color DB884D
-  // Error color A41D39
+  // warniing color A41D39
+
+  // COLORS
+  --color-overlay: hwb(0deg 0% 100% / 60%); // rgba(0, 0, 0, 0.6)
 }
