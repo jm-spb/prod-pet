@@ -66,30 +66,30 @@ BackgroundDark.args = {
 
 BackgroundDark.decorators = [ThemeDecorator(Theme.DARK)];
 
-export const BackgroundInverted = Template.bind({});
-BackgroundInverted.args = {
-  variant: ButtonVariant.BACKGROUND_INVERTED,
+export const BackgroundContent = Template.bind({});
+BackgroundContent.args = {
+  variant: ButtonVariant.BACKGROUND_CONTENT,
   children: 'Button',
 };
 
-export const BackgroundInvertedDark = Template.bind({});
-BackgroundInvertedDark.args = {
-  variant: ButtonVariant.BACKGROUND_INVERTED,
+export const BackgroundContentDark = Template.bind({});
+Background.args = {
+  variant: ButtonVariant.BACKGROUND_CONTENT,
   children: 'Button',
 };
 
-BackgroundInvertedDark.decorators = [ThemeDecorator(Theme.DARK)];
+Background.decorators = [ThemeDecorator(Theme.DARK)];
 
 export const Square = Template.bind({});
 Square.args = {
-  variant: ButtonVariant.BACKGROUND_INVERTED,
+  variant: ButtonVariant.BACKGROUND_CONTENT,
   children: '>',
   square: true,
 };
 
 export const SquareSizeL = Template.bind({});
 SquareSizeL.args = {
-  variant: ButtonVariant.BACKGROUND_INVERTED,
+  variant: ButtonVariant.BACKGROUND_CONTENT,
   children: '>',
   square: true,
   size: ButtonSize.L,
@@ -97,7 +97,7 @@ SquareSizeL.args = {
 
 export const SquareSizeXL = Template.bind({});
 SquareSizeXL.args = {
-  variant: ButtonVariant.BACKGROUND_INVERTED,
+  variant: ButtonVariant.BACKGROUND_CONTENT,
   children: '>',
   square: true,
   size: ButtonSize.XL,

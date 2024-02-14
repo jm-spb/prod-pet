@@ -40,7 +40,7 @@ export const Sidebar: React.FC<SidebarProps> = (props) => {
         data-testid="sidebar-toggle"
         onClick={onToggle}
         className={styles.collapseBtn}
-        variant={ButtonVariant.BACKGROUND_INVERTED}
+        variant={ButtonVariant.BACKGROUND_CONTENT}
         square
         size={ButtonSize.L}
       >

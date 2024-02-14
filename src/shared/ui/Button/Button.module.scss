@@ -24,10 +24,10 @@
   color: var(--color-primary);
 }
 
-.backgroundInverted {
+.backgroundContent {
   border: none;
-  background: var(--inverted-bg-color);
-  color: var(--inverted-primary-color);
+  background: var(--color-background-content);
+  color: var(--color-text-primary);
 }
 
 .square {
