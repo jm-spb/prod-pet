@@ -12,16 +12,16 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({ className }) => {
   const [isAuthModal, setIsAuthModal] = useState(false);
   const { t } = useTranslation('translation');
-  const onToggleModal = useCallback(() => {
+  const handleModalOpen = useCallback(() => {
     setIsAuthModal((prev) => !prev);
   }, []);
 
   return (
     <div className={classNames(styles.navbar, {}, [className])}>
-      <Button className={styles.links} variant={ButtonVariant.CLEAR} onClick={onToggleModal}>
+      <Button className={styles.links} variant={ButtonVariant.CLEAR} onClick={handleModalOpen}>
         {t('login')}
       </Button>
-      <LoginModal isOpen={isAuthModal} onClose={onToggleModal} />
+      <LoginModal isOpen={isAuthModal} onClose={handleModalOpen} />
     </div>
   );
 };
