@@ -87,7 +87,7 @@ export const LoginForm: React.FC<LoginFormProps> = (props) => {
       <Button className={styles.submit} type="submit" disabled={!isValid || isLoading}>
         <div className={styles.submitWrapper}>
           <span>{t('login')}</span>
-          {isLoading ? <Loader size="30" /> : null}
+          {isLoading ? <Loader size="30" inButton /> : null}
         </div>
       </Button>
     </form>
