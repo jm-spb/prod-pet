@@ -1,10 +1,6 @@
 .modal {
   position: fixed;
   inset: 0;
-  opacity: 0;
-  pointer-events: none;
-  z-index: -1;
-  transition: 0.3s all;
 }
 
 .overlay {
@@ -21,17 +17,41 @@
   border-radius: 0.4rem;
   background-color: var(--color-background-content);
   color: var(--color-text-primary);
-  transition: 0.3s transform;
-  transform: scale(0.5);
   max-width: 60%;
 }
 
 .opened {
-  opacity: 1;
-  pointer-events: auto;
-  z-index: var(--modal-z-index);
+  animation: fade-in 0.3s;
+}
 
-  .content {
-    transform: scale(1);
+.closed {
+  animation: fade-out 0.3s;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  100% {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: var(--modal-z-index);
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: var(--modal-z-index);
+  }
+
+  100% {
+    opacity: 0;
+    pointer-events: none;
+    z-index: -1;
   }
 }
