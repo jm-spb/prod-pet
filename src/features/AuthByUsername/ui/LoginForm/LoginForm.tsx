@@ -30,6 +30,7 @@ export const LoginForm: React.FC<LoginFormProps> = (props) => {
   });
   const { t } = useTranslation('translation');
 
+  // Reset form inputs if isSubmitSuccessful
   useEffect(() => {
     if (isSubmitSuccessful) {
       reset();
@@ -37,20 +38,20 @@ export const LoginForm: React.FC<LoginFormProps> = (props) => {
   }, [isSubmitSuccessful, reset]);
 
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-
-  const password = useRef({});
-  password.current = watch('password', '');
-
-  const onSubmit = ({ username, password }: LoginFormInputs) => {
-    console.log(username, password);
-  };
-
-  const toggleShowPassword = () => {
+  const togglePasswordVisibility = () => {
     setIsPasswordVisible((prev) => !prev);
   };
 
+  // Get password value
+  const password = useRef({});
+  password.current = watch('password', '');
+
+  const handleSubmitButton = ({ username, password }: LoginFormInputs) => {
+    console.log(username, password);
+  };
+
   return (
-    <form className={classNames(styles.loginForm, {}, [className])} onSubmit={handleSubmit(onSubmit)}>
+    <form className={classNames(styles.loginForm, {}, [className])} onSubmit={handleSubmit(handleSubmitButton)}>
       <label className={styles.label} htmlFor="username">
         {t('username')}
         <input
@@ -77,7 +78,7 @@ export const LoginForm: React.FC<LoginFormProps> = (props) => {
             type={isPasswordVisible ? 'text' : 'password'}
             placeholder={t('password_enter')}
           />
-          <span className={styles.togglePassword} onClick={toggleShowPassword}>
+          <span className={styles.togglePassword} onClick={togglePasswordVisibility}>
             {isPasswordVisible ? <EyeOff /> : <Eye />}
           </span>
         </div>
