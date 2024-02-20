@@ -1,10 +1,14 @@
-import { useEffect, useRef, useState } from 'react';
+import { memo, useCallback, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
 import { Eye, EyeOff } from 'react-feather';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Button } from 'shared/ui/Button/Button';
 import { Loader } from 'shared/ui/Loader/Loader';
+import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername';
+import { getLoginState } from '../../model/selectors/getLoginState/getLoginState';
+import { loginActions } from '../../model/slice/loginSlice';
 import styles from './LoginForm.module.scss';
 
 interface LoginFormProps {
@@ -17,7 +21,7 @@ interface LoginFormInputs {
   password: string;
 }
 
-export const LoginForm: React.FC<LoginFormProps> = (props) => {
+export const LoginForm: React.FC<LoginFormProps> = memo((props) => {
   const { className, isLoading } = props;
   const {
     register,
@@ -30,10 +34,31 @@ export const LoginForm: React.FC<LoginFormProps> = (props) => {
   });
   const { t } = useTranslation('translation');
 
+  const dispatch = useDispatch();
+  const { username, password } = useSelector(getLoginState);
+
+  const handleChangeUsername = useCallback(
+    (value: string) => {
+      dispatch(loginActions.setUsername(value));
+    },
+    [dispatch]
+  );
+
+  const handleChangePassword = useCallback(
+    (value: string) => {
+      dispatch(loginActions.setPassword(value));
+    },
+    [dispatch]
+  );
+
+  const handleSubmitButton = useCallback(() => {
+    dispatch(loginByUsername({ username, password }));
+  }, [dispatch, username, password]);
+
   // Reset form inputs if isSubmitSuccessful
   useEffect(() => {
     if (isSubmitSuccessful) {
-      reset();
+      reset({ username: '', password: '' });
     }
   }, [isSubmitSuccessful, reset]);
 
@@ -43,12 +68,8 @@ export const LoginForm: React.FC<LoginFormProps> = (props) => {
   };
 
   // Get password value
-  const password = useRef({});
-  password.current = watch('password', '');
-
-  const handleSubmitButton = ({ username, password }: LoginFormInputs) => {
-    console.log(username, password);
-  };
+  // const password = useRef({});
+  // password.current = watch('password', '');
 
   return (
     <form className={classNames(styles.loginForm, {}, [className])} onSubmit={handleSubmit(handleSubmitButton)}>
@@ -62,6 +83,8 @@ export const LoginForm: React.FC<LoginFormProps> = (props) => {
           id="username"
           type="text"
           placeholder={t('username_enter')}
+          onChange={(e) => handleChangeUsername(e.target.value)}
+          // value={username}
         />
         {errors?.username && <span className={styles.error}>{errors?.username.message}</span>}
       </label>
@@ -77,6 +100,8 @@ export const LoginForm: React.FC<LoginFormProps> = (props) => {
             id="password"
             type={isPasswordVisible ? 'text' : 'password'}
             placeholder={t('password_enter')}
+            onChange={(e) => handleChangePassword(e.target.value)}
+            // value={password}
           />
           <span className={styles.togglePassword} onClick={togglePasswordVisibility}>
             {isPasswordVisible ? <EyeOff /> : <Eye />}
@@ -93,4 +118,4 @@ export const LoginForm: React.FC<LoginFormProps> = (props) => {
       </Button>
     </form>
   );
-};
+});
