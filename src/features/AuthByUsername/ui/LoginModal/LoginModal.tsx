@@ -15,10 +15,10 @@ export const LoginModal: React.FC<LoginModalProps> = (props) => {
   const { t } = useTranslation('translation');
 
   return (
-    <Modal className={classNames(styles.loginModal, {}, [className])} isOpen={isOpen} onClose={onClose}>
+    <Modal className={classNames(styles.loginModal, {}, [className])} isOpen={isOpen} onClose={onClose} lazy>
       <div className={styles.wrapper}>
         <span className={styles.heading}>{t('auth')}</span>
-        <LoginForm isLoading />
+        <LoginForm />
       </div>
     </Modal>
   );
