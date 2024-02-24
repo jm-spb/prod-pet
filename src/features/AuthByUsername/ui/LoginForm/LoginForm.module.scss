@@ -1,3 +1,15 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  min-width: 30rem;
+
+  // decrease gap only if error message
+  &:has(> .submitError) {
+    gap: 2rem;
+  }
+}
+
 .label {
   min-height: 10rem;
   text-align: left;
@@ -30,8 +42,8 @@
   cursor: pointer;
 }
 
-.error {
-  color: red;
+.inputError {
+  color: var(--color-error-light);
   font-size: 1.2rem;
   display: block;
   line-height: 1.4;
@@ -46,20 +58,6 @@
 .submit {
   width: 100%;
   font-weight: 600;
-
-  &:hover {
-    cursor: pointer;
-    background-color: var(--color-primary-dark);
-  }
-
-  &:active {
-    opacity: 0.8;
-  }
-
-  &:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-  }
 }
 
 .submitWrapper {
