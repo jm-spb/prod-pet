@@ -16,5 +16,6 @@
   "password": "Пароль",
   "password_enter": "Ваш пароль",
   "username_error": "Введите ваше имя",
-  "password_error": "Введите ваш пароль"
+  "password_error": "Введите ваш пароль",
+  "login_error": "Неверный пользователь или пароль"
 }

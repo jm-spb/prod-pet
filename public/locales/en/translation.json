@@ -16,5 +16,6 @@
   "password": "Password",
   "password_enter": "Enter password",
   "username_error": "Username field is empty",
-  "password_error": "Password field is empty"
+  "password_error": "Password field is empty",
+  "login_error": "Wrong username or password"
 }
