@@ -13,7 +13,7 @@
   "users": [
     {
       "id": "1",
-      "username": "John",
+      "username": "admin",
       "password": "123"
     }
   ]
