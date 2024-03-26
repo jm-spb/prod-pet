@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -47,23 +47,16 @@ export const LoginForm: React.FC<LoginFormProps> = memo((props) => {
     setIsPasswordVisible((prev) => !prev);
   };
 
-  const handleChangeUsername = useCallback(
-    (value: string) => {
-      dispatch(loginActions.setUsername(value));
-    },
-    [dispatch]
-  );
+  const handleChangeUsername = (e: React.ChangeEvent<HTMLInputElement>) =>
+    dispatch(loginActions.setUsername(e.target.value));
 
-  const handleChangePassword = useCallback(
-    (value: string) => {
-      dispatch(loginActions.setPassword(value));
-    },
-    [dispatch]
-  );
+  const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(loginActions.setPassword(e.target.value));
+  };
 
-  const handleSubmitButton = useCallback(() => {
+  const handleSubmitButton = () => {
     dispatch(loginByUsername({ username, password }));
-  }, [dispatch, username, password]);
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -81,7 +74,7 @@ export const LoginForm: React.FC<LoginFormProps> = memo((props) => {
             id="username"
             type="text"
             placeholder={t('username_enter')}
-            onChange={(e) => handleChangeUsername(e.target.value)}
+            onChange={handleChangeUsername}
             // value={username}
           />
           {errors?.username && <span className={styles.inputError}>{errors?.username.message}</span>}
@@ -98,7 +91,7 @@ export const LoginForm: React.FC<LoginFormProps> = memo((props) => {
               id="password"
               type={isPasswordVisible ? 'text' : 'password'}
               placeholder={t('password_enter')}
-              onChange={(e) => handleChangePassword(e.target.value)}
+              onChange={handleChangePassword}
               // value={password}
             />
             <span className={styles.togglePassword} onClick={togglePasswordVisibility}>
