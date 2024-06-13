@@ -14,6 +14,7 @@ import styles from './LoginForm.module.scss';
 
 interface LoginFormProps {
   className?: string;
+  onClose?: () => void;
 }
 
 interface LoginFormInputs {
@@ -47,6 +48,7 @@ export const LoginForm: React.FC<LoginFormProps> = memo((props) => {
     setIsPasswordVisible((prev) => !prev);
   };
 
+  // TODO: refactor to remove rerender on every input change
   const handleChangeUsername = (e: React.ChangeEvent<HTMLInputElement>) =>
     dispatch(loginActions.setUsername(e.target.value));
 
@@ -61,7 +63,7 @@ export const LoginForm: React.FC<LoginFormProps> = memo((props) => {
   return (
     <div className={styles.wrapper}>
       <Text variant={TextVariant.PRIMARY} title={t('auth')} />
-      {error && <Text className={styles.submitError} variant={TextVariant.ERROR} text={error} />}
+      {error && <Text className={styles.submitError} variant={TextVariant.ERROR} text={t('login_error')} />}
 
       <form className={classNames(styles.loginForm, {}, [className])} onSubmit={handleSubmit(handleSubmitButton)}>
         <label className={styles.label} htmlFor="username">
@@ -75,7 +77,7 @@ export const LoginForm: React.FC<LoginFormProps> = memo((props) => {
             type="text"
             placeholder={t('username_enter')}
             onChange={handleChangeUsername}
-            // value={username}
+            value={username}
           />
           {errors?.username && <span className={styles.inputError}>{errors?.username.message}</span>}
         </label>
@@ -92,7 +94,7 @@ export const LoginForm: React.FC<LoginFormProps> = memo((props) => {
               type={isPasswordVisible ? 'text' : 'password'}
               placeholder={t('password_enter')}
               onChange={handleChangePassword}
-              // value={password}
+              value={password}
             />
             <span className={styles.togglePassword} onClick={togglePasswordVisibility}>
               {isPasswordVisible ? <EyeOff /> : <Eye />}
