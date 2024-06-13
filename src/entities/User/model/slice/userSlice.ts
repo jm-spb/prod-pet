@@ -13,10 +13,15 @@ const userSlice = createSlice({
     },
     // check if user is logged in
     initAuthData: (state) => {
+      // TODO: access to localStorage in reducer is antipattern, remove it
       const user = localStorage.getItem(LOCAL_STORAGE_USER_KEY);
       if (user) {
         state.authData = JSON.parse(user);
       }
+    },
+    logoutUser: (state) => {
+      state.authData = undefined;
+      localStorage.removeItem(LOCAL_STORAGE_USER_KEY);
     },
   },
 });
