@@ -1,2 +1,2 @@
-// All rules: https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional
+// All rules: https://commitlint.js.org/reference/rules
 export default { extends: ['@commitlint/config-conventional'] };
