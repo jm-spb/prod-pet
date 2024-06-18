@@ -62,6 +62,10 @@ export const Modal: React.FC<ModalProps> = (props) => {
     };
   }, [isOpen, closeHandler]);
 
+  /* lazy flag - to control Modal mounting behavior.
+  True - if we need to mount Modal only when we click on Modal.
+  False - always mount Modal (ex. to fetch some data before click on Modal).  
+  */
   if (lazy && !isMounted) {
     return null;
   }
