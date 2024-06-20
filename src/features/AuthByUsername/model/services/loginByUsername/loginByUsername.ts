@@ -1,7 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { User, userActions } from 'entities/User';
-import { LOCAL_STORAGE_USER_KEY } from 'shared/const/localStorage';
 
 interface LoginByUsernameProps {
   username: string;
@@ -25,9 +24,7 @@ export const loginByUsername = createAsyncThunk<User, LoginByUsernameProps, { re
         throw new Error();
       }
 
-      // TODO: 1) refactor this auth imitation to real auth with tokens
-      localStorage.setItem(LOCAL_STORAGE_USER_KEY, JSON.stringify(response.data));
-      thunkAPI.dispatch(userActions.setAuthData(response.data));
+      thunkAPI.dispatch(userActions.setUserAuthData(response.data));
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue('error');
