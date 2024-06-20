@@ -1,5 +1,5 @@
 import { memo, useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { Eye, EyeOff } from 'react-feather';
@@ -9,12 +9,10 @@ import { Loader } from 'shared/ui/Loader/Loader';
 import { Text, TextVariant } from 'shared/ui/Text/Text';
 import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername';
 import { getLoginState } from '../../model/selectors/getLoginState/getLoginState';
-import { loginActions } from '../../model/slice/loginSlice';
 import styles from './LoginForm.module.scss';
 
 interface LoginFormProps {
   className?: string;
-  onClose?: () => void;
 }
 
 interface LoginFormInputs {
@@ -34,9 +32,8 @@ export const LoginForm: React.FC<LoginFormProps> = memo((props) => {
   });
   const { t } = useTranslation('translation');
   const dispatch = useDispatch();
-  const { username, password, error, isLoading } = useSelector(getLoginState);
+  const { error, isLoading } = useSelector(getLoginState);
 
-  // Reset form inputs if isSubmitSuccessful
   useEffect(() => {
     if (isSubmitSuccessful) {
       reset({ username: '', password: '' });
@@ -48,15 +45,7 @@ export const LoginForm: React.FC<LoginFormProps> = memo((props) => {
     setIsPasswordVisible((prev) => !prev);
   };
 
-  // TODO: refactor to remove rerender on every input change
-  const handleChangeUsername = (e: React.ChangeEvent<HTMLInputElement>) =>
-    dispatch(loginActions.setUsername(e.target.value));
-
-  const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(loginActions.setPassword(e.target.value));
-  };
-
-  const handleSubmitButton = () => {
+  const handleSubmitButton: SubmitHandler<LoginFormInputs> = ({ username, password }) => {
     dispatch(loginByUsername({ username, password }));
   };
 
@@ -76,8 +65,6 @@ export const LoginForm: React.FC<LoginFormProps> = memo((props) => {
             id="username"
             type="text"
             placeholder={t('username_enter')}
-            onChange={handleChangeUsername}
-            value={username}
           />
           {errors?.username && <span className={styles.inputError}>{errors?.username.message}</span>}
         </label>
@@ -93,8 +80,6 @@ export const LoginForm: React.FC<LoginFormProps> = memo((props) => {
               id="password"
               type={isPasswordVisible ? 'text' : 'password'}
               placeholder={t('password_enter')}
-              onChange={handleChangePassword}
-              value={password}
             />
             <span className={styles.togglePassword} onClick={togglePasswordVisibility}>
               {isPasswordVisible ? <EyeOff /> : <Eye />}
@@ -113,3 +98,6 @@ export const LoginForm: React.FC<LoginFormProps> = memo((props) => {
     </div>
   );
 });
+
+// show component name in stack trace
+LoginForm.displayName = 'LoginForm';
