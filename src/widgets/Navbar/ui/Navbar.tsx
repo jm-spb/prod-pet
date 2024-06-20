@@ -13,7 +13,7 @@ interface NavbarProps {
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ className }) => {
-  const [isAuthModal, setIsAuthModal] = useState(false);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const { t } = useTranslation('translation');
   const dispatch = useDispatch();
   const { authData } = useSelector((state: StateSchema) => state.user);
@@ -23,16 +23,15 @@ export const Navbar: React.FC<NavbarProps> = ({ className }) => {
   };
 
   const handleModalOpen = () => {
-    setIsAuthModal(true);
+    setIsAuthModalOpen(true);
   };
 
   const handleModalClose = () => {
-    setIsAuthModal(false);
-    // TODO: create dispatch to clear form
+    setIsAuthModalOpen(false);
   };
 
   if (authData) {
-    if (isAuthModal) setIsAuthModal(false);
+    if (isAuthModalOpen) setIsAuthModalOpen(false);
 
     return (
       <div className={classNames(styles.navbar, {}, [className])}>
@@ -48,7 +47,7 @@ export const Navbar: React.FC<NavbarProps> = ({ className }) => {
       <Button className={styles.links} variant={ButtonVariant.CLEAR} onClick={handleModalOpen}>
         {t('login')}
       </Button>
-      <LoginModal isOpen={isAuthModal} onClose={handleModalClose} />
+      <LoginModal isOpen={isAuthModalOpen} onClose={handleModalClose} />
     </div>
   );
 };
