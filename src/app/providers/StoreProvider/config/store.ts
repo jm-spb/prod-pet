@@ -3,6 +3,7 @@ import { counterReducer } from 'entities/Counter';
 import { userReducer } from 'entities/User';
 import { loginReducer } from 'features/AuthByUsername';
 import { StateSchema } from './StateSchema';
+import { authMiddleware } from '../middleware/authMiddleware';
 
 // createReduxStore - for reconfigure store in tests and storybook
 export function createReduxStore(initialState?: StateSchema) {
@@ -12,11 +13,11 @@ export function createReduxStore(initialState?: StateSchema) {
     loginForm: loginReducer,
   };
 
-  return configureStore<StateSchema>({
+  return configureStore({
     reducer: rootReducers,
     devTools: __IS_DEV__,
-
-    // for tests
+    // preloadedState - for tests
     preloadedState: initialState,
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(authMiddleware),
   });
 }
