@@ -20,7 +20,7 @@ interface LoginFormInputs {
   password: string;
 }
 
-export const LoginForm: React.FC<LoginFormProps> = memo((props) => {
+const LoginForm: React.FC<LoginFormProps> = memo((props) => {
   const { className } = props;
   const {
     register,
@@ -101,3 +101,5 @@ export const LoginForm: React.FC<LoginFormProps> = memo((props) => {
 
 // show component name in stack trace
 LoginForm.displayName = 'LoginForm';
+
+export default LoginForm;
