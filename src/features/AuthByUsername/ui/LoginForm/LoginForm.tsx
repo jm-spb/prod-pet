@@ -3,12 +3,16 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { Eye, EyeOff } from 'react-feather';
+import { ReducersList } from 'app/providers/StoreProvider';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Button } from 'shared/ui/Button/Button';
 import { Loader } from 'shared/ui/Loader/Loader';
 import { Text, TextVariant } from 'shared/ui/Text/Text';
+import { useDynamicModuleLoader } from 'shared/hooks/useDynamicReducerLoader/useDynamicReducerLoader';
 import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername';
-import { getLoginState } from '../../model/selectors/getLoginState/getLoginState';
+import { getLoginIsLoading } from '../../model/selectors/getLoginIsLoading/getLoginIsLoading';
+import { getLoginError } from '../../model/selectors/getLoginError/getLoginError';
+import { loginReducer } from '../../model/slice/loginSlice';
 import styles from './LoginForm.module.scss';
 
 interface LoginFormProps {
@@ -20,8 +24,13 @@ interface LoginFormInputs {
   password: string;
 }
 
+const initialReducers: ReducersList = {
+  loginForm: loginReducer,
+};
+
 const LoginForm: React.FC<LoginFormProps> = memo((props) => {
   const { className } = props;
+  const { t } = useTranslation('translation');
   const {
     register,
     formState: { errors, isValid, isSubmitSuccessful },
@@ -30,9 +39,13 @@ const LoginForm: React.FC<LoginFormProps> = memo((props) => {
   } = useForm<LoginFormInputs>({
     mode: 'onBlur',
   });
-  const { t } = useTranslation('translation');
+
+  // Handle async reducers: add loginForm data in store on mount, remove on unmount
+  useDynamicModuleLoader(initialReducers);
+
   const dispatch = useDispatch();
-  const { error, isLoading } = useSelector(getLoginState);
+  const isLoading = useSelector(getLoginIsLoading);
+  const error = useSelector(getLoginError);
 
   useEffect(() => {
     if (isSubmitSuccessful) {
