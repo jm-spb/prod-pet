@@ -6,8 +6,9 @@ import { authMiddleware } from '../middleware/authMiddleware';
 import { createReducerManager } from './reducerManager';
 
 // createReduxStore - for reconfigure store in tests and storybook
-export function createReduxStore(initialState?: StateSchema) {
+export function createReduxStore(initialState?: StateSchema, asyncReducers?: ReducersMapObject<StateSchema>) {
   const rootReducers: ReducersMapObject<StateSchema> = {
+    ...asyncReducers,
     counter: counterReducer,
     user: userReducer,
   };
