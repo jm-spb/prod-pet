@@ -18,8 +18,13 @@ export interface ReducerManager {
   reduce: (state: StateSchema, action: AnyAction) => CombinedState<StateSchema>;
   add: (key: StateSchemaKeys, reducer: Reducer) => void;
   remove: (key: StateSchemaKeys) => void;
+  has: (key: StateSchemaKeys) => boolean;
 }
 
 export interface ReduxStoreWithReducerManager extends EnhancedStore<StateSchema> {
   reducerManager: ReducerManager;
 }
+
+export type ReducersList = {
+  [name in StateSchemaKeys]?: Reducer;
+};
