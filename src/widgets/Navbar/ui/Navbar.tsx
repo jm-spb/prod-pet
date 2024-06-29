@@ -1,11 +1,11 @@
-import { classNames } from 'shared/lib/classNames/classNames';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, ButtonVariant } from 'shared/ui/Button/Button';
 import { useTranslation } from 'react-i18next';
-import { LoginModal } from 'features/AuthByUsername';
 import { StateSchema } from 'app/providers/StoreProvider';
 import { userActions } from 'entities/User';
+import { LoginModal } from 'features/AuthByUsername';
+import { classNames } from 'shared/lib/classNames/classNames';
+import { Button, ButtonVariant } from 'shared/ui/Button/Button';
 import styles from './Navbar.module.scss';
 
 interface NavbarProps {
@@ -22,17 +22,11 @@ export const Navbar: React.FC<NavbarProps> = ({ className }) => {
     dispatch(userActions.logoutUser());
   };
 
-  const handleModalOpen = () => {
-    setIsAuthModalOpen(true);
-  };
-
-  const handleModalClose = () => {
-    setIsAuthModalOpen(false);
+  const toggleShowModal = () => {
+    setIsAuthModalOpen((prev) => !prev);
   };
 
   if (authData) {
-    if (isAuthModalOpen) setIsAuthModalOpen(false);
-
     return (
       <div className={classNames(styles.navbar, {}, [className])}>
         <Button className={styles.links} variant={ButtonVariant.CLEAR} onClick={handleLogout}>
@@ -44,10 +38,10 @@ export const Navbar: React.FC<NavbarProps> = ({ className }) => {
 
   return (
     <div className={classNames(styles.navbar, {}, [className])}>
-      <Button className={styles.links} variant={ButtonVariant.CLEAR} onClick={handleModalOpen}>
+      <Button className={styles.links} variant={ButtonVariant.CLEAR} onClick={toggleShowModal}>
         {t('login')}
       </Button>
-      <LoginModal isOpen={isAuthModalOpen} onClose={handleModalClose} />
+      <LoginModal isOpen={isAuthModalOpen} onClose={toggleShowModal} />
     </div>
   );
 };
