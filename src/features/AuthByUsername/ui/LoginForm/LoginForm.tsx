@@ -1,14 +1,15 @@
 import { memo, useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Eye, EyeOff } from 'react-feather';
 import { ReducersList } from 'app/providers/StoreProvider';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Button } from 'shared/ui/Button/Button';
 import { Loader } from 'shared/ui/Loader/Loader';
 import { Text, TextVariant } from 'shared/ui/Text/Text';
-import { useDynamicModuleLoader } from 'shared/hooks/useDynamicReducerLoader/useDynamicReducerLoader';
+import { useDynamicModuleLoader } from 'shared/lib/hooks/useDynamicReducerLoader/useDynamicReducerLoader';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername';
 import { getLoginIsLoading } from '../../model/selectors/getLoginIsLoading/getLoginIsLoading';
 import { getLoginError } from '../../model/selectors/getLoginError/getLoginError';
@@ -17,6 +18,7 @@ import styles from './LoginForm.module.scss';
 
 interface LoginFormProps {
   className?: string;
+  onSuccess?: () => void;
 }
 
 interface LoginFormInputs {
@@ -29,7 +31,7 @@ const initialReducers: ReducersList = {
 };
 
 const LoginForm: React.FC<LoginFormProps> = memo((props) => {
-  const { className } = props;
+  const { className, onSuccess } = props;
   const { t } = useTranslation('translation');
   const {
     register,
@@ -43,7 +45,7 @@ const LoginForm: React.FC<LoginFormProps> = memo((props) => {
   // Handle async reducers: add loginForm data in store on mount, remove on unmount
   useDynamicModuleLoader(initialReducers);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const isLoading = useSelector(getLoginIsLoading);
   const error = useSelector(getLoginError);
 
@@ -58,8 +60,11 @@ const LoginForm: React.FC<LoginFormProps> = memo((props) => {
     setIsPasswordVisible((prev) => !prev);
   };
 
-  const handleSubmitButton: SubmitHandler<LoginFormInputs> = ({ username, password }) => {
-    dispatch(loginByUsername({ username, password }));
+  const handleSubmitButton: SubmitHandler<LoginFormInputs> = async ({ username, password }) => {
+    const result = await dispatch(loginByUsername({ username, password }));
+    if (result.meta.requestStatus === 'fulfilled') {
+      onSuccess();
+    }
   };
 
   return (
