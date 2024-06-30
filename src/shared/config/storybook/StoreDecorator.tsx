@@ -16,7 +16,7 @@ const defaultAsyncReducers: DeepPartial<ReducersMapObject<StateSchema>> = {
  * @returns A decorator function that accepts a Storybook component and wraps it with StoreProvider.
  */
 export const StoreDecorator =
-  (state: DeepPartial<StateSchema>, asyncReducers: DeepPartial<ReducersMapObject<StateSchema>>) =>
+  (state: DeepPartial<StateSchema>, asyncReducers?: DeepPartial<ReducersMapObject<StateSchema>>) =>
   (StoryComponent: Story) =>
     (
       <StoreProvider initialState={state} asyncReducers={{ ...defaultAsyncReducers, ...asyncReducers }}>
