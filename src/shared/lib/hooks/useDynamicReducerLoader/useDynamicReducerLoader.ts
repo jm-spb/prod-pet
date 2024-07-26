@@ -34,6 +34,10 @@ export const useDynamicModuleLoader: DynamicModuleLoader = (reducers, removeAfte
     addReducers();
 
     return () => {
+      /* TODO: choose between 2 strategies:
+        - remove reducers after unmount (less amount of reducers in store)
+        - keep them in store (avoid downloading them again on mount)
+      */
       if (removeAfterUnmount) {
         removeReducers();
       }
