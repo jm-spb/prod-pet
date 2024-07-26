@@ -9,18 +9,18 @@ import App from './app/App';
 import 'shared/config/i18n/i18n';
 
 render(
-  <StoreProvider
-    initialState={{
-      user: { authData: null },
-      loginForm: { username: '', password: '', isLoading: false },
-    }}>
-    <BrowserRouter>
+  <BrowserRouter>
+    <StoreProvider
+      initialState={{
+        user: { authData: null },
+        loginForm: { username: '', password: '', isLoading: false },
+      }}>
       <ErrorBoundary>
         <ThemeProvider>
           <App />
         </ThemeProvider>
       </ErrorBoundary>
-    </BrowserRouter>
-  </StoreProvider>,
+    </StoreProvider>
+  </BrowserRouter>,
   document.getElementById('root')
 );

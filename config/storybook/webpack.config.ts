@@ -51,8 +51,8 @@ export default ({ config }: { config: webpack.Configuration }) => {
     use: ['@svgr/webpack'],
   });
 
-  // set global variable __IS_DEV__
-  config.plugins?.push(new DefinePlugin({ __IS_DEV__: true }));
+  // set global variable __IS_DEV__, __API_URL__
+  config.plugins?.push(new DefinePlugin({ __IS_DEV__: JSON.stringify(true), __API_URL__: JSON.stringify('') }));
 
   return config;
 };

@@ -1,11 +1,17 @@
 import { ReducersMapObject, configureStore } from '@reduxjs/toolkit';
+import { NavigateOptions, To } from 'react-router-dom';
 import { userReducer } from 'entities/User';
+import { $api } from 'shared/api/api';
 import { StateSchema } from './reduxStoreTypes';
 import { authMiddleware } from '../middleware/authMiddleware';
 import { createReducerManager } from './reducerManager';
 
 // createReduxStore - for reconfigure store in tests and storybook
-export function createReduxStore(initialState?: StateSchema, asyncReducers?: ReducersMapObject<StateSchema>) {
+export function createReduxStore(
+  initialState?: StateSchema,
+  asyncReducers?: ReducersMapObject<StateSchema>,
+  navigate?: (to: To, options?: NavigateOptions) => void
+) {
   const rootReducers: ReducersMapObject<StateSchema> = {
     ...asyncReducers,
     user: userReducer,
@@ -19,7 +25,15 @@ export function createReduxStore(initialState?: StateSchema, asyncReducers?: Red
 
     // preloadedState - for tests
     preloadedState: initialState,
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(authMiddleware),
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({
+        thunk: {
+          extraArgument: {
+            api: $api,
+            navigate,
+          },
+        },
+      }).concat(authMiddleware),
   });
 
   // @ts-ignore

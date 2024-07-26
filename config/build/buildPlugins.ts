@@ -5,7 +5,7 @@ import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { BuildOptions } from './types/config';
 
-export function buildPlugins({ paths, isDev, analyze }: BuildOptions): webpack.WebpackPluginInstance[] {
+export function buildPlugins({ paths, isDev, analyze, apiUrl }: BuildOptions): webpack.WebpackPluginInstance[] {
   return [
     new webpack.ProgressPlugin(),
     new HtmlWebpackPlugin({ template: paths.html }),
@@ -16,6 +16,7 @@ export function buildPlugins({ paths, isDev, analyze }: BuildOptions): webpack.W
     // replaces variables with other values or expressions at compile time
     new webpack.DefinePlugin({
       __IS_DEV__: JSON.stringify(isDev),
+      __API_URL__: JSON.stringify(apiUrl),
     }),
     // not working in build:prod, only if --env analyze=true is set
     new BundleAnalyzerPlugin({

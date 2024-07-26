@@ -12,10 +12,12 @@ export default (env: BuildEnv) => {
   };
 
   const mode = env.mode || 'development';
+
   // instead of explicit check: if (mode === 'devepolment')
   const isDev = mode === 'development';
   const port = env.port || 3000;
   const { analyze } = env;
+  const apiUrl = env.apiUrl || 'http://localhost:8000';
 
   const config: webpack.Configuration = buildWebpackConfig({
     mode,
@@ -23,6 +25,7 @@ export default (env: BuildEnv) => {
     isDev,
     port,
     analyze,
+    apiUrl,
   });
 
   return config;
