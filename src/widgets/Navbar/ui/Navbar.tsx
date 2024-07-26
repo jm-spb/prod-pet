@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { StateSchema } from 'app/providers/StoreProvider';
@@ -12,7 +12,7 @@ interface NavbarProps {
   className?: string;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ className }) => {
+export const Navbar: React.FC<NavbarProps> = memo(({ className }) => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const { t } = useTranslation('translation');
   const dispatch = useDispatch();
@@ -44,4 +44,4 @@ export const Navbar: React.FC<NavbarProps> = ({ className }) => {
       <LoginModal isOpen={isAuthModalOpen} onClose={toggleShowModal} />
     </div>
   );
-};
+});
