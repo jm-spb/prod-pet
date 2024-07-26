@@ -1,0 +1,28 @@
+.link {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+}
+
+.linkText {
+  overflow: hidden;
+  max-width: 8rem;
+  max-height: 2.4rem;
+  transition: max-width 0.2s;
+}
+
+.linkIcon {
+  fill: var(--color-text-primary);
+  width: 2rem;
+  height: 2rem;
+}
+
+.collapsed {
+  width: var(--sidebar-width-collapsed);
+
+  .linkText {
+    max-width: 0;
+    transition: max-width 0.2s;
+  }
+}

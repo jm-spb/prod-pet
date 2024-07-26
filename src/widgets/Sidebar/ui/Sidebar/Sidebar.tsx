@@ -1,36 +1,27 @@
-import { classNames } from 'shared/lib/classNames/classNames';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { ThemeSwitcher } from 'widgets/ThemeSwitcher';
 import { LangSwitcher } from 'widgets/LangSwitcher';
+import { classNames } from 'shared/lib/classNames/classNames';
 import { Button, ButtonSize, ButtonVariant } from 'shared/ui/Button/Button';
-import { AppLink, AppLinkColor } from 'shared/ui/AppLink/AppLink';
-import { useTranslation } from 'react-i18next';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
-import HomeIcon from 'shared/assets/icons/home.svg';
-import AboutIcon from 'shared/assets/icons/about.svg';
+import { SidebarItemsList } from '../../model/items';
+import { SidebarItem } from '../SidebarItem/SidebarItem';
 import styles from './Sidebar.module.scss';
 
 interface SidebarProps {
   className?: string;
 }
 
-export const Sidebar: React.FC<SidebarProps> = (props) => {
+export const Sidebar: React.FC<SidebarProps> = memo((props) => {
   const { className } = props;
-  const { t } = useTranslation('translation');
   const [collapsed, setCollapsed] = useState(false);
   const onToggle = () => setCollapsed((prev) => !prev);
 
   return (
     <div data-testid="sidebar" className={classNames(styles.sidebar, { [styles.collapsed]: collapsed }, [className])}>
       <div className={styles.links}>
-        <AppLink to={RoutePath.main} className={styles.link} color={AppLinkColor.INVERTED}>
-          <HomeIcon className={styles.linkIcon} />
-          <span className={styles.linkText}>{t('main')}</span>
-        </AppLink>
-        <AppLink to={RoutePath.about} className={styles.link} color={AppLinkColor.INVERTED}>
-          <AboutIcon className={styles.linkIcon} />
-          <span className={styles.linkText}>{t('about')}</span>
-        </AppLink>
+        {SidebarItemsList.map((item) => (
+          <SidebarItem key={item.path} item={item} collapsed={collapsed} />
+        ))}
       </div>
       <div className={styles.switchers}>
         <ThemeSwitcher />
@@ -42,10 +33,9 @@ export const Sidebar: React.FC<SidebarProps> = (props) => {
         className={styles.collapseBtn}
         variant={ButtonVariant.BACKGROUND_CONTENT}
         square
-        size={ButtonSize.L}
-      >
+        size={ButtonSize.L}>
         {collapsed ? '>' : '<'}
       </Button>
     </div>
   );
-};
+});
