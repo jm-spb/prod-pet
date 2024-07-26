@@ -11,7 +11,6 @@ import 'shared/config/i18n/i18n';
 render(
   <StoreProvider
     initialState={{
-      counter: { value: 10 },
       user: { authData: null },
       loginForm: { username: '', password: '', isLoading: false },
     }}>
