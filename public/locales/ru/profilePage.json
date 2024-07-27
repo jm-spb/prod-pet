@@ -1,3 +1,8 @@
 {
-  "profile": "Профиль"
+  "profile-page-title": "Страница профиля",
+  "profile": "Профиль",
+  "username": "Никнейм",
+  "firstName": "Имя",
+  "lastName": "Фамилия",
+  "edit": "Редактировать"
 }
