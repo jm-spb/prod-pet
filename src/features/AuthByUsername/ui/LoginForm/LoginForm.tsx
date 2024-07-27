@@ -1,4 +1,5 @@
 import { memo, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -33,6 +34,7 @@ const initialReducers: ReducersList = {
 const LoginForm: React.FC<LoginFormProps> = memo((props) => {
   const { className, onSuccess } = props;
   const { t } = useTranslation('translation');
+  const navigate = useNavigate();
   const {
     register,
     formState: { errors, isValid, isSubmitSuccessful },
@@ -63,6 +65,7 @@ const LoginForm: React.FC<LoginFormProps> = memo((props) => {
   const handleSubmitButton: SubmitHandler<LoginFormInputs> = async ({ username, password }) => {
     const result = await dispatch(loginByUsername({ username, password }));
     if (result.meta.requestStatus === 'fulfilled') {
+      navigate('/profile');
       onSuccess();
     }
   };
