@@ -8,7 +8,14 @@
     { "id": "2", "text": "another comment about post 1", "postId": "1" }
   ],
   "profile": {
-    "name": "typicode"
+    "firstName": "John",
+    "lastName": "Doe",
+    "age": 30,
+    "currency": "USD",
+    "country": "USA",
+    "city": "New-York",
+    "username": "admin",
+    "avatar": "https://i.sstatic.net/l60Hf.png"
   },
   "users": [
     {
