@@ -1,8 +1,10 @@
-import { memo } from 'react';
+import { memo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ReducersList } from 'app/providers/StoreProvider';
-import { profileReducer } from 'entities/Profile';
+import { fetchProfileData, ProfileCard, profileReducer } from 'entities/Profile';
 import { useDynamicModuleLoader } from 'shared/lib/hooks/useDynamicReducerLoader/useDynamicReducerLoader';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { Text } from 'shared/ui/Text/Text';
 
 const reducers: ReducersList = {
   profile: profileReducer,
@@ -10,9 +12,19 @@ const reducers: ReducersList = {
 
 const ProfilePage = memo(() => {
   const { t } = useTranslation('profilePage');
+  const dispatch = useAppDispatch();
   useDynamicModuleLoader(reducers);
 
-  return <div>{t('profile')}</div>;
+  useEffect(() => {
+    dispatch(fetchProfileData());
+  }, [dispatch]);
+
+  return (
+    <div>
+      <Text title={t('profile-page-title')} />
+      <ProfileCard />
+    </div>
+  );
 });
 
 export default ProfilePage;
