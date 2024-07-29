@@ -10,18 +10,18 @@ export const useTheme = (): UseThemeResult => {
   const { theme, setTheme } = useContext(ThemeContext);
 
   useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_THEME_KEY, theme);
+    localStorage.setItem(LOCAL_STORAGE_THEME_KEY, theme ?? Theme.LIGHT);
     document.documentElement.dataset.theme = theme;
   }, [theme]);
 
   const toggleTheme = () => {
     const newTheme = theme === Theme.DARK ? Theme.LIGHT : Theme.DARK;
-    setTheme(newTheme);
+    setTheme?.(newTheme);
     localStorage.setItem(LOCAL_STORAGE_THEME_KEY, newTheme);
   };
 
   return {
-    theme,
+    theme: theme ?? Theme.LIGHT,
     toggleTheme,
   };
 };

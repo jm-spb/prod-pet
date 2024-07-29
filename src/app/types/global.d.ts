@@ -18,3 +18,10 @@ declare module '*.webp';
 
 declare const __IS_DEV__: boolean;
 declare const __API_URL__: string;
+
+// Recursively makes all nested properties in an object optional
+type DeepPartial<T> = T extends object
+  ? {
+      [P in keyof T]?: DeepPartial<T[P]>;
+    }
+  : T;

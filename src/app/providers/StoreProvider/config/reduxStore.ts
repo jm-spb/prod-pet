@@ -1,7 +1,7 @@
 import { ReducersMapObject, configureStore } from '@reduxjs/toolkit';
 import { userReducer } from 'entities/User';
 import { $api } from 'shared/api/api';
-import { StateSchema } from './reduxStoreTypes';
+import { ReduxStoreWithReducerManager, StateSchema } from './reduxStoreTypes';
 import { authMiddleware } from '../middleware/authMiddleware';
 import { createReducerManager } from './reducerManager';
 
@@ -30,10 +30,12 @@ export function createReduxStore(initialState?: StateSchema, asyncReducers?: Red
       }).concat(authMiddleware),
   });
 
-  // @ts-ignore
-  reduxStore.reducerManager = reducerManager;
+  const storeWithReducerManager: ReduxStoreWithReducerManager = {
+    ...reduxStore,
+    reducerManager,
+  };
 
-  return reduxStore;
+  return storeWithReducerManager;
 }
 
 export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch'];

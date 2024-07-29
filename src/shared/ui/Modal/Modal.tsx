@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import { Portal } from '../Portal/Portal';
 import styles from './Modal.module.scss';
 
@@ -30,7 +30,7 @@ export const Modal: React.FC<ModalProps> = (props) => {
   };
 
   // set animation when modal is opened or closed
-  const mods: Record<string, boolean> = {
+  const mods: Mods = {
     [styles.opened]: isOpen,
     [styles.closed]: !isOpen,
   };

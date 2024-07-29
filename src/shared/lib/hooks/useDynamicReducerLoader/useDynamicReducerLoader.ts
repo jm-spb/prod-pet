@@ -1,9 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useStore } from 'react-redux';
-import { Reducer } from '@reduxjs/toolkit';
 import { ReducersList, ReduxStoreWithReducerManager, StateSchemaKeys } from 'app/providers/StoreProvider';
 
-type ReducerEntry = [StateSchemaKeys, Reducer];
 interface DynamicModuleLoader {
   (reducers: ReducersList, removeAfterUnmount?: boolean): void;
 }
@@ -13,10 +11,10 @@ export const useDynamicModuleLoader: DynamicModuleLoader = (reducers, removeAfte
   const dispatch = useDispatch();
 
   const addReducers = () => {
-    Object.entries(reducers).forEach(([keyName, reducer]: ReducerEntry) => {
+    Object.entries(reducers).forEach(([keyName, reducer]) => {
       // check if reducer is already been added and store been updated
-      if (!store.reducerManager.has(keyName)) {
-        store.reducerManager.add(keyName, reducer);
+      if (!store.reducerManager.has(keyName as StateSchemaKeys)) {
+        store.reducerManager.add(keyName as StateSchemaKeys, reducer);
         // TODO: @INIT and @DELETE - for debug, remove them
         dispatch({ type: `@INIT ${keyName}` });
       }
@@ -24,8 +22,8 @@ export const useDynamicModuleLoader: DynamicModuleLoader = (reducers, removeAfte
   };
 
   const removeReducers = () => {
-    Object.entries(reducers).forEach(([keyName]: ReducerEntry) => {
-      store.reducerManager.remove(keyName);
+    Object.entries(reducers).forEach(([keyName]) => {
+      store.reducerManager.remove(keyName as StateSchemaKeys);
       dispatch({ type: `@DELETE ${keyName}` });
     });
   };

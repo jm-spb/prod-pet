@@ -2,13 +2,14 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { LoginSchema } from '../types/loginSchema';
 import { loginByUsername } from '../services/loginByUsername/loginByUsername';
 
-const initialState: LoginSchema = {
+export const initialState: LoginSchema = {
   username: '',
   password: '',
   isLoading: false,
-  error: undefined,
+  error: '',
 };
 
+// TODO: Remove slices (as we use react-hook-form -> no need to use redux store)
 const loginSlice = createSlice({
   name: 'login',
   initialState,
@@ -19,11 +20,14 @@ const loginSlice = createSlice({
     setPassword: (state, action: PayloadAction<string>) => {
       state.password = action.payload;
     },
+    clearErrorMessage: (state) => {
+      state.error = '';
+    },
   },
   extraReducers: (builder) => {
     builder
       .addCase(loginByUsername.pending, (state) => {
-        state.error = undefined;
+        state.error = '';
         state.isLoading = true;
       })
       .addCase(loginByUsername.fulfilled, (state) => {

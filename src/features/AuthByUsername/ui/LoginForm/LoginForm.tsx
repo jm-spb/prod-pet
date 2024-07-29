@@ -66,7 +66,7 @@ const LoginForm: React.FC<LoginFormProps> = memo((props) => {
     const result = await dispatch(loginByUsername({ username, password }));
     if (result.meta.requestStatus === 'fulfilled') {
       navigate('/profile');
-      onSuccess();
+      onSuccess?.();
     }
   };
 
